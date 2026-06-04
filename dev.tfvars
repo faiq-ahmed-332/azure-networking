@@ -1,7 +1,7 @@
 env                 = "dev"
 location            = "uksouth"
 location_short      = "uks"
-resource_group_name = "rg-myapp-dev"
+resource_group_name = "rg-clearbank-dev-uks"
 vnet_cidr           = "10.0.0.0/16"
 app_subnet_cidr     = "10.0.1.0/24"
 data_subnet_cidr    = "10.0.2.0/24"
