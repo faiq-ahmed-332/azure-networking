@@ -12,6 +12,7 @@ resource "azurerm_subnet" "app" {
   virtual_network_name              = azurerm_virtual_network.this.name
   address_prefixes                  = [var.app_subnet_cidr]
   private_endpoint_network_policies = "Disabled"
+  service_endpoints                 = ["Microsoft.KeyVault"]
 }
 
 resource "azurerm_subnet" "data" {

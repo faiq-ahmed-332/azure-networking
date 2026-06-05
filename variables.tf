@@ -50,3 +50,9 @@ variable "tenant_id" {
   type        = string
   sensitive   = true
 }
+
+variable "app_name" {
+  description = "Base name for resources (e.g. myapp)"
+  type        = string
+  default     = "clearbank"
+}
