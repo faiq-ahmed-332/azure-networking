@@ -8,6 +8,14 @@ on:
     branches:
       - main
 
+env:
+  TF_VERSION: "1.8.5"
+  WORKING_DIR: "."
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
 jobs:
 
 # Job 1 Validate + Security Scan
@@ -51,9 +59,9 @@ jobs:
           creds: | 
             {
               "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
               "tenantId": "${{ secrets.ARM_TENANT_ID }}",
               "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
-              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
             }
 
       - name: Terraform Init
@@ -83,9 +91,9 @@ jobs:
         creds: | 
             {
               "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
               "tenantId": "${{ secrets.ARM_TENANT_ID }}",
               "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
-              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
             }
 
       - name: Terraform Init
