@@ -54,13 +54,15 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Azure Login
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-            "clientId": "${{ secrets.ARM_CLIENT_ID }}",
-            "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
-            "tenantId": "${{ secrets.ARM_TENANT_ID }}",
-            "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
-            
+          creds: | 
+            {
+              "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
+              "tenantId": "${{ secrets.ARM_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+            }
 
       - name: Terraform Init
         working-directory: ${{ env.WORKING_DIR }}
@@ -85,12 +87,15 @@ jobs:
           terraform_version: ${{ env.TF_VERSION }}
 
       - name: Azure Login
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-            "clientId": "${{ secrets.ARM_CLIENT_ID }}",
-            "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
-            "tenantId": "${{ secrets.ARM_TENANT_ID }}",
-            "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+          creds: | 
+              {
+                "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+                "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
+                "tenantId": "${{ secrets.ARM_TENANT_ID }}",
+                "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+              }
 
       - name: Terraform Init
         working-directory: ${{ env.WORKING_DIR }}
