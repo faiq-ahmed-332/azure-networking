@@ -8,9 +8,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  id-token: write
 jobs:
 
 # Job 1 Validate + Security Scan
@@ -51,9 +48,13 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-         client-id: ${{ secrets.ARM_CLIENT_ID }}
-         tenant-id: ${{ secrets.ARM_TENANT_ID }}
-         subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          creds: | 
+            {
+              "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "tenantId": "${{ secrets.ARM_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
+            }
 
       - name: Terraform Init
         working-directory: ${{ env.WORKING_DIR }}
@@ -79,10 +80,13 @@ jobs:
 
       - name: Azure Login
         uses: azure/login@v2
-        with:
-         client-id: ${{ secrets.ARM_CLIENT_ID }}
-         tenant-id: ${{ secrets.ARM_TENANT_ID }}
-         subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+        creds: | 
+            {
+              "clientId": "${{ secrets.ARM_CLIENT_ID }}",
+              "tenantId": "${{ secrets.ARM_TENANT_ID }}",
+              "subscriptionId": "${{ secrets.ARM_SUBSCRIPTION_ID }}"
+              "clientSecret": "${{ secrets.ARM_CLIENT_SECRET }}"
+            }
 
       - name: Terraform Init
         working-directory: ${{ env.WORKING_DIR }}
