@@ -60,7 +60,13 @@ jobs:
 
       - name: Terraform Plan
         working-directory: ${{ env.WORKING_DIR }}
-        run: terraform plan -out=tfplan -var-file="dev.tfvars" > plan.out
+        run: terraform plan -out=tfplan -var-file="dev.tfvars"
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tfplan
+          path: ${{ env.WORKING_DIR }}/tfplan
 
   # Job 3 Terraform Apply
   apply:
@@ -79,6 +85,12 @@ jobs:
       - name: Terraform Init
         working-directory: ${{ env.WORKING_DIR }}
         run: terraform init
+
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: tfplan
+          path: ${{ env.WORKING_DIR }}
 
       - name: Terraform Apply
         working-directory: ${{ env.WORKING_DIR }}
