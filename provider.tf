@@ -6,7 +6,9 @@ terraform {
     }
   }
 
-  backend "azurerm" {}
+  backend "azurerm" {
+    use_azuread_auth = true
+  }
 }
 provider "azurerm" {
   subscription_id = var.subscription_id
