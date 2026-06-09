@@ -8,10 +8,11 @@ resource "azurerm_storage_account" "this" {
   tags                     = var.tags
 
   # Security hardening
-  https_traffic_only_enabled    = true
-  min_tls_version               = "TLS1_2"
-  shared_access_key_enabled     = false
-  public_network_access_enabled = false # no public internet access
+  https_traffic_only_enabled      = true
+  min_tls_version                 = "TLS1_2"
+  shared_access_key_enabled       = false
+  public_network_access_enabled   = false # no public internet access
+  allow_nested_items_to_be_public = false # no public blobs/containers
 
   network_rules {
     default_action = "Deny"

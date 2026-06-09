@@ -60,7 +60,8 @@ jobs:
             -backend-config="resource_group_name=${{ secrets.TF_BACKEND_RESOURCE_GROUP }}" \
             -backend-config="storage_account_name=${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}" \
             -backend-config="container_name=${{ secrets.TF_BACKEND_CONTAINER }}" \
-            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}"
+            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
+            -backend-config="use_azuread_auth=true"
 
       - name: Terraform Plan
         working-directory: ${{ env.WORKING_DIR }}
@@ -94,7 +95,8 @@ jobs:
             -backend-config="resource_group_name=${{ secrets.TF_BACKEND_RESOURCE_GROUP }}" \
             -backend-config="storage_account_name=${{ secrets.TF_BACKEND_STORAGE_ACCOUNT }}" \
             -backend-config="container_name=${{ secrets.TF_BACKEND_CONTAINER }}" \
-            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}"
+            -backend-config="key=${{ secrets.TF_BACKEND_KEY }}" \
+            -backend-config="use_azuread_auth=true"
 
       - name: Download Plan Artifact
         uses: actions/download-artifact@v4
