@@ -28,3 +28,14 @@ module "key_vault" {
   vnet_id             = module.networking.vnet_id
   tags                = var.tags
 }
+
+module "storage" {
+  source              = "./modules/storage"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  location_short      = var.location_short
+  env                 = var.env
+  subnet_id           = module.networking.data_subnet_id # ← data subnet
+  vnet_id             = module.networking.vnet_id
+  tags                = var.tags
+}
