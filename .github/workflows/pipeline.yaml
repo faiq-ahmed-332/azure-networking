@@ -3,7 +3,7 @@ name: Terraform Infrastructure Pipeline
 on:
   push:
     branches:
-      - az-networking-4
+      - main
   pull_request:
     branches:
       - main
